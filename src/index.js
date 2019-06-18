@@ -6,7 +6,19 @@ document.addEventListener("DOMContentLoaded", function(){
     function fetchComments(){
         fetch("http://localhost:3000/api/v1/comments")
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => populateComments(data))
+    }
+
+    function populateComments(comments){
+        comments.forEach(comment => {populateComment(comment)
+        })
+    }
+
+    function populateComment(comment) {
+        const commentUl = document.getElementById("commentUl")
+        const li = document.createElement("li")
+        li.innerText = `${comment.content} by ${comment.user_id}`
+        commentUl.append(li)
     }
 
     function displayScore() {
@@ -38,35 +50,6 @@ document.addEventListener("DOMContentLoaded", function(){
     function moveHero() {
         document.getElementById("hero").style.left = hero.left + "px";
     }
-
-    // document.onkeydown = function(e){
-    //     // console.log(e)
-    //     if (e.keyCode === 37) {
-    //         e.preventDefault()
-    //         // console.log(hero.left)
-    //         if(hero.left >= 280) {
-    //         hero.left = hero.left - 10;
-            
-    //         moveHero()
-    //         }
-    //     } else if (e.keyCode === 39) {
-    //         e.preventDefault()
-    //         // console.log("RIGHT")
-    //         // console.log(hero.left)
-    //         if(hero.left <= 1540)
-    //         hero.left = hero.left + 10;
-    //         moveHero()
-    //     } else if (e.keyCode === 32) {
-    //         // console.log("FIRE")
-    //         e.preventDefault()
-    //         missiles.push({
-    //             left: hero.left + 15,
-    //             top: hero.top + 10 
-    //         })
-    //         drawMissiles()
-    //         // console.log(missiles)
-    //     }
-    // }
 
     function actions(e){
         if (e.keyCode === 37) {
@@ -157,7 +140,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     function gameLoop(){
-        setTimeout(gameLoop, 100)
+        setTimeout(gameLoop, 50)
         moveMissiles()
         drawMissiles()
         moveEnemies()
