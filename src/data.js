@@ -8,6 +8,8 @@ let game_id = 0
         createCommentForm = document.getElementById("createCommentForm")
         createCommentForm.addEventListener("submit", createComment)
         console.log("THis is my score", score)
+        console.log("This is my user id", user_id )
+        console.log("This is my game id", game_id)
 
    
     })
@@ -85,6 +87,7 @@ let game_id = 0
             body: JSON.stringify(newComment)
           }).then(e.target.reset())
           .then(alert("New comment created!"))
+          .then(populateComment(newComment))
     }
 
 

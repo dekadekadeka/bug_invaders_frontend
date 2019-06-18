@@ -11,8 +11,12 @@ document.addEventListener("DOMContentLoaded", function(){
     
 
     function gameStart(){
+        if (user_id === 0){
+            alert("Sign in to play!")
+        }else{
         createEnemies()
         gameLoop()
+        }
     }
     
 
