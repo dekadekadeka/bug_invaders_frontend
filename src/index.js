@@ -1,11 +1,18 @@
 document.addEventListener("DOMContentLoaded", function(){
+    document.addEventListener("keydown", actions)
     fetchComments()
     let missiles = [];
     let enemies = [];
     let score = 0;
-    createEnemies()
+
+    const startBtn = document.getElementById("startButton")
+    startBtn.addEventListener("click", gameStart)
+
+    function gameStart(){
+        createEnemies()
+    }
     
-    document.addEventListener("keydown", actions)
+    
     
 
     function fetchComments(){
@@ -98,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
    
     function createEnemies() {
-        for(i=0; i < getRandomArbitrary(1, 10); i++){
+        for(i=0; i < 10; i++){
         enemies.push({top: 200, left: getRandomArbitrary(400, 1300)})
         }
     }
@@ -143,7 +150,7 @@ document.addEventListener("DOMContentLoaded", function(){
         setTimeout(gameLoop, 90)
         moveMissiles()
         drawMissiles()
-        if (enemies.length > 0) {
+        if (enemies.length >= 1) {
         moveEnemies()
         drawEnemies()
         collisionDetection()
