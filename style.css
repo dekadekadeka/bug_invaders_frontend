@@ -3,8 +3,10 @@
     height: 2200px;
     width: 1800px;
     background-repeat: no-repeat;
+    /* background-size: cover; */
     
 }
+
 
 #hero {
     background-image: url("assets/cat_transparent.png");

@@ -1,3 +1,4 @@
+let score = 0
 document.addEventListener("DOMContentLoaded", function(){
     document.addEventListener("keydown", actions)
 
@@ -6,7 +7,7 @@ document.addEventListener("DOMContentLoaded", function(){
     
     let missiles = [];
     let enemies = [];
-
+    
     
 
     function gameStart(){
@@ -23,6 +24,8 @@ document.addEventListener("DOMContentLoaded", function(){
     function increaseScore(){
         const scoreDisplaySpan = document.getElementById("currentScoreSpan")
         scoreDisplaySpan.innerText = parseInt(scoreDisplaySpan.innerText) + 10 
+        score = scoreDisplaySpan.innerText
+        console.log(score)
     }
     
         let hero = {
@@ -86,7 +89,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
    
     function createEnemies() {
-        for(i=0; i < 10; i++){
+        for(i=0; i < getRandomArbitrary(5, 10) ; i++){
         enemies.push({top: 200, left: getRandomArbitrary(400, 1300)})
         }
     }
@@ -142,6 +145,7 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     function completeGame(){
+        saveGame()
         //  save game
         //  increment lvl
         //  start new game
