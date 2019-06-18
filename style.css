@@ -3,6 +3,12 @@
     height: 2200px;
     width: 1800px;
     background-repeat: no-repeat;
+    
+}
+
+.responsive{
+    width: 100%;
+    height: auto;
 }
 
 #hero {
@@ -47,3 +53,18 @@
     left: 250px;
 }
 
+#startButton{
+    height: 110px;
+    width: 120px;
+    position: absolute;
+    top: 100px;
+    left: 250px;
+}
+
+#createUser{
+    height: 110px;
+    width: 120px;
+    position: absolute;
+    top: 100px;
+    left: 2000px;
+}

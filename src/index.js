@@ -1,15 +1,18 @@
 document.addEventListener("DOMContentLoaded", function(){
     document.addEventListener("keydown", actions)
-    fetchComments()
-    let missiles = [];
-    let enemies = [];
-    let score = 0;
 
     const startBtn = document.getElementById("startButton")
     startBtn.addEventListener("click", gameStart)
+    fetchComments()
+    
+    let missiles = [];
+    let enemies = [];
+
+    
 
     function gameStart(){
         createEnemies()
+        gameLoop()
     }
     
     
@@ -21,17 +24,6 @@ document.addEventListener("DOMContentLoaded", function(){
         .then(data => console.log(data))
     }
 
-    // function populateComments(comments){
-    //     comments.forEach(comment => {populateComment(comment)
-    //     })
-    // }
-
-    // function populateComment(comment) {
-    //     const commentUl = document.getElementById("commentUl")
-    //     const li = document.createElement("li")
-    //     li.innerText = `${comment.content} by ${comment.user_id}`
-    //     commentUl.append(li)
-    // }
 
     function getRandomArbitrary(min, max) {
         return Math.random() * (max - min) + min;
@@ -41,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function(){
     function increaseScore(){
         const scoreDisplay = document.getElementById("score")
         scoreDisplay.innerText = parseInt(scoreDisplay.innerText) + 10
-        score = scoreDisplay.innerText
     }
     
         let hero = {
@@ -147,40 +138,35 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     function gameLoop(){
-        setTimeout(gameLoop, 90)
+        let timer = setTimeout(gameLoop, 90)
         moveMissiles()
         drawMissiles()
         if (enemies.length >= 1) {
         moveEnemies()
         drawEnemies()
         collisionDetection()
+        } else if (enemies.length === 0 && missiles.length === 0){
+            clearTimeout(timer)
+            completeGame()
         }
     }
 
-    // function completeGame(){
-    //      save game
-    //      increment lvl
-    //      start new game
-    // }
+    function completeGame(){
+        //  save game
+        //  increment lvl
+        //  start new game
+        console.log("FINISHED")
+    }
     
 
-    gameLoop()
     
-
-
-    
-
 
 
     
 
 
 
-
-
-
-
-
+    
 
 
 })
