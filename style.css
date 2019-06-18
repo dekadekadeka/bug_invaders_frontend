@@ -1,0 +1,40 @@
+#background {
+    background-image: url("assets/cartoon-tv.gif");
+    height: 2200px;
+    width: 1800px;
+    background-repeat: no-repeat;
+}
+
+#hero {
+    background-image: url("assets/cat.jpeg");
+    height: 130px;
+    width: 110px;
+    position: absolute;
+    top: 440px;
+    left: 460px;
+    background-repeat: no-repeat;
+}
+
+.enemy {
+    background-image: url("assets/bugs.jpg");
+    height: 110px;
+    width: 100px;
+    position: absolute;
+    top: 170px;
+    left: 460px;
+    background-repeat: no-repeat;
+}
+#missiles {
+    height: 2200px;
+    width: 1800px;
+    background-repeat: no-repeat;
+    position: absolute;
+
+}
+.missile {
+    background-image: url("assets/flatiron.jpeg");
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    background-repeat: no-repeat;
+}
