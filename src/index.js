@@ -1,31 +1,40 @@
 document.addEventListener("DOMContentLoaded", function(){
     fetchComments()
-    // gameStart()
+    let missiles = [];
+    let enemies = [];
+    let score = 0;
+    createEnemies()
+    
     document.addEventListener("keydown", actions)
     
 
     function fetchComments(){
         fetch("http://localhost:3000/api/v1/comments")
         .then(res => res.json())
-        .then(data => populateComments(data))
+        .then(data => console.log(data))
     }
 
-    function populateComments(comments){
-        comments.forEach(comment => {populateComment(comment)
-        })
-    }
+    // function populateComments(comments){
+    //     comments.forEach(comment => {populateComment(comment)
+    //     })
+    // }
 
-    function populateComment(comment) {
-        const commentUl = document.getElementById("commentUl")
-        const li = document.createElement("li")
-        li.innerText = `${comment.content} by ${comment.user_id}`
-        commentUl.append(li)
-    }
+    // function populateComment(comment) {
+    //     const commentUl = document.getElementById("commentUl")
+    //     const li = document.createElement("li")
+    //     li.innerText = `${comment.content} by ${comment.user_id}`
+    //     commentUl.append(li)
+    // }
+
+    function getRandomArbitrary(min, max) {
+        return Math.random() * (max - min) + min;
+      }
 
 
     function increaseScore(){
         const scoreDisplay = document.getElementById("score")
         scoreDisplay.innerText = parseInt(scoreDisplay.innerText) + 10
+        score = scoreDisplay.innerText
     }
     
         let hero = {
@@ -33,16 +42,7 @@ document.addEventListener("DOMContentLoaded", function(){
             left: 890
         };
 
-    let missiles = [];
-    let enemies = [
-        {top: 200, left: 950},
-        {top: 200, left: 800},
-        {top: 200, left: 1100},
-        {top: 200, left: 1250},
-        {top: 200, left: 1400},
-        {top: 200, left: 650},
-
-    ]
+   
 
     function moveHero() {
         document.getElementById("hero").style.left = hero.left + "px";
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function(){
             e.preventDefault()
             // console.log(hero.left)
             if(hero.left >= 280) {
-            hero.left = hero.left - 10;
+            hero.left = hero.left - 30;
             
             moveHero()
             }
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function(){
             // console.log("RIGHT")
             // console.log(hero.left)
             if(hero.left <= 1540)
-            hero.left = hero.left + 10;
+            hero.left = hero.left + 30;
             moveHero()
         } else if (e.keyCode === 32) {
             // console.log("FIRE")
@@ -96,13 +96,15 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     }
 
+   
     function createEnemies() {
-        enemies.push({top: 200, left: 400})
+        for(i=0; i < getRandomArbitrary(1, 10); i++){
+        enemies.push({top: 200, left: getRandomArbitrary(400, 1300)})
+        }
     }
 
     function moveEnemies(){
         for(i=0; i < enemies.length; i++) {
-            console.log(enemies[i].top)
             if (enemies[i].top < 950) {
             enemies[i].top = enemies[i].top + 10;
             } else {
@@ -122,8 +124,6 @@ document.addEventListener("DOMContentLoaded", function(){
     function collisionDetection(){
         for(k=0; k < enemies.length; k++) {
             for(i=0; i < missiles.length; i++) {
-                console.log("missile top", missiles[i].top)
-                console.log("enemy top", enemies[k].top)
                 if (
                     (missiles[i].top <= enemies[k].top + 50) &&
                     (missiles[i].top > enemies[k].top) &&
@@ -139,20 +139,24 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     }
 
-    // function gameStart(){
-    //     setTimeout(createEnemies, 100)
-    //     gameLoop()
-    // }
-
     function gameLoop(){
-        setTimeout(gameLoop, 50)
-        
+        setTimeout(gameLoop, 90)
         moveMissiles()
         drawMissiles()
+        if (enemies.length > 0) {
         moveEnemies()
         drawEnemies()
         collisionDetection()
+        }
     }
+
+    // function completeGame(){
+    //      save game
+    //      increment lvl
+    //      start new game
+    // }
+    
+
     gameLoop()
     
 
