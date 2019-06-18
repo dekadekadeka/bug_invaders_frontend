@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){
     fetchComments()
+    // gameStart()
     document.addEventListener("keydown", actions)
     
 
@@ -21,10 +22,6 @@ document.addEventListener("DOMContentLoaded", function(){
         commentUl.append(li)
     }
 
-    function displayScore() {
-        const scoreDisplay = document.getElementById("score")
-        scoreDisplay.innerText = score
-    }
 
     function increaseScore(){
         const scoreDisplay = document.getElementById("score")
@@ -100,6 +97,10 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     }
 
+    function createEnemies() {
+        enemies.push({top: 200, left: 400})
+    }
+
     function moveEnemies(){
         for(i=0; i < enemies.length; i++) {
             console.log(enemies[i].top)
@@ -112,10 +113,10 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     function drawEnemies(){
-        document.getElementById("enemy").innerHTML = '';
+        document.getElementById("enemy").innerHTML = ''
         for(i=0; i < enemies.length; i++) {
             document.getElementById("missiles").innerHTML += `
-            <div class='enemy' style='left:${enemies[i].left}px; top:${enemies[i].top}px;'></div>;`
+            <div class='enemy' style='left:${enemies[i].left}px; top:${enemies[i].top}px;'></div>`
         }
     }
 
@@ -139,8 +140,14 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     }
 
+    // function gameStart(){
+    //     setTimeout(createEnemies, 100)
+    //     gameLoop()
+    // }
+
     function gameLoop(){
         setTimeout(gameLoop, 50)
+        
         moveMissiles()
         drawMissiles()
         moveEnemies()
@@ -148,6 +155,7 @@ document.addEventListener("DOMContentLoaded", function(){
         collisionDetection()
     }
     gameLoop()
+    
 
 
     
