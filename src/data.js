@@ -1,5 +1,6 @@
 let user_id = 0
 let game_id = 0
+let badDiv = document.getElementById("background")
 
    document.addEventListener("DOMContentLoaded", function(){
         fetchComments()
@@ -10,6 +11,7 @@ let game_id = 0
         console.log("THis is my score", score)
         console.log("This is my user id", user_id )
         console.log("This is my game id", game_id)
+        document.body.style.zoom = 1
 
    
     })
@@ -89,5 +91,7 @@ let game_id = 0
           .then(alert("New comment created!"))
           .then(populateComment(newComment))
     }
+
+    
 
 
