@@ -4,6 +4,7 @@ let badDiv = document.getElementById("background")
 
    document.addEventListener("DOMContentLoaded", function(){
         fetchComments()
+        
         createUserForm = document.getElementById("userForm")
         createUserForm.addEventListener("submit", createUser)
         createCommentForm = document.getElementById("createCommentForm")
@@ -54,6 +55,7 @@ let badDiv = document.getElementById("background")
               user_id = res.id
               console.log("This is my user id", user_id)
           }).then(e.target.reset())
+          .then(fetchGames())
           .then(alert("New user created!"))
     }
 
@@ -92,6 +94,24 @@ let badDiv = document.getElementById("background")
           .then(populateComment(newComment))
     }
 
-    
+    function fetchGames(){
+        fetch("http://localhost:3000/api/v1/games")
+        .then(res => res.json())
+        .then(data => {populateGames(data)})
+    }
+
+    function populateGames(games){
+        games.forEach(game => {populateGame(game)
+        })
+    }
+
+    function populateGame(game){
+        let highscoresUl = document.getElementById("highscoreUl")
+        const li = document.createElement("li")
+        if (game.user_id === user_id) {
+        li.innerText = game.score
+        highscoresUl.append(li)
+    }
+}
 
 

@@ -150,6 +150,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     function completeGame(){
         saveGame()
+        fetchGames()
         //  save game
         //  increment lvl
         //  start new game
