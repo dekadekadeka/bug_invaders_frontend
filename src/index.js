@@ -90,10 +90,9 @@ document.addEventListener("DOMContentLoaded", function(){
         for(i=0; i < missiles.length; i++) {
             if(missiles[i].top > 260) {
             missiles[i].top = missiles[i].top - 10;
-        } else {
-            missiles.splice(i, 1)
-        }
-            
+            } else {
+                missiles.splice(i, 1)
+            }
         }
     }
 
