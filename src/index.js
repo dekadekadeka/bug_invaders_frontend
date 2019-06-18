@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){
     fetchComments()
-    
+    document.addEventListener("keydown", actions)
     
 
     function fetchComments(){
@@ -9,20 +9,29 @@ document.addEventListener("DOMContentLoaded", function(){
         .then(data => console.log(data))
     }
 
-    
-    
-    
+    function displayScore() {
+        const scoreDisplay = document.getElementById("score")
+        scoreDisplay.innerText = score
+    }
+
+    function increaseScore(){
+        const scoreDisplay = document.getElementById("score")
+        scoreDisplay.innerText = parseInt(scoreDisplay.innerText) + 10
+    }
     
         let hero = {
-            top: 170,
-            left: 460
+            top: 960,
+            left: 890
         };
 
     let missiles = [];
     let enemies = [
-        {top: 150, left: 400},
-        {top: 150, left: 460},
-        {top: 150, left: 600},
+        {top: 200, left: 950},
+        {top: 200, left: 800},
+        {top: 200, left: 1100},
+        {top: 200, left: 1250},
+        {top: 200, left: 1400},
+        {top: 200, left: 650},
 
     ]
 
@@ -30,22 +39,57 @@ document.addEventListener("DOMContentLoaded", function(){
         document.getElementById("hero").style.left = hero.left + "px";
     }
 
-    document.onkeydown = function(e){
-        console.log(e)
+    // document.onkeydown = function(e){
+    //     // console.log(e)
+    //     if (e.keyCode === 37) {
+    //         e.preventDefault()
+    //         // console.log(hero.left)
+    //         if(hero.left >= 280) {
+    //         hero.left = hero.left - 10;
+            
+    //         moveHero()
+    //         }
+    //     } else if (e.keyCode === 39) {
+    //         e.preventDefault()
+    //         // console.log("RIGHT")
+    //         // console.log(hero.left)
+    //         if(hero.left <= 1540)
+    //         hero.left = hero.left + 10;
+    //         moveHero()
+    //     } else if (e.keyCode === 32) {
+    //         // console.log("FIRE")
+    //         e.preventDefault()
+    //         missiles.push({
+    //             left: hero.left + 15,
+    //             top: hero.top + 10 
+    //         })
+    //         drawMissiles()
+    //         // console.log(missiles)
+    //     }
+    // }
+
+    function actions(e){
         if (e.keyCode === 37) {
-            // console.log("left")
+            e.preventDefault()
+            // console.log(hero.left)
+            if(hero.left >= 280) {
             hero.left = hero.left - 10;
+            
             moveHero()
+            }
         } else if (e.keyCode === 39) {
+            e.preventDefault()
             // console.log("RIGHT")
+            // console.log(hero.left)
+            if(hero.left <= 1540)
             hero.left = hero.left + 10;
             moveHero()
         } else if (e.keyCode === 32) {
-            console.log("FIRE")
+            // console.log("FIRE")
             e.preventDefault()
             missiles.push({
                 left: hero.left + 15,
-                top: hero.top +240 
+                top: hero.top + 10 
             })
             drawMissiles()
             // console.log(missiles)
@@ -64,15 +108,23 @@ document.addEventListener("DOMContentLoaded", function(){
 
     function moveMissiles(){
         for(i=0; i < missiles.length; i++) {
+            if(missiles[i].top > 260) {
             missiles[i].top = missiles[i].top - 10;
+        } else {
+            missiles.splice(i, 1)
+        }
             
         }
     }
 
     function moveEnemies(){
         for(i=0; i < enemies.length; i++) {
+            console.log(enemies[i].top)
+            if (enemies[i].top < 950) {
             enemies[i].top = enemies[i].top + 10;
-            
+            } else {
+                enemies.splice(i, 1)
+            }
         }
     }
 
@@ -85,15 +137,32 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     function collisionDetection(){
-        
+        for(k=0; k < enemies.length; k++) {
+            for(i=0; i < missiles.length; i++) {
+                console.log("missile top", missiles[i].top)
+                console.log("enemy top", enemies[k].top)
+                if (
+                    (missiles[i].top <= enemies[k].top + 50) &&
+                    (missiles[i].top > enemies[k].top) &&
+                    (missiles[i].left >= enemies[k].left) &&
+                    (missiles[i].left <= enemies[k].left + 100)
+                ){
+                    console.log("HIT")
+                    enemies.splice(k, 1)
+                    missiles.splice(i, 1)
+                    increaseScore()
+                }
+            }
+        }
     }
 
     function gameLoop(){
-        setTimeout(gameLoop, 500)
+        setTimeout(gameLoop, 100)
         moveMissiles()
         drawMissiles()
         moveEnemies()
         drawEnemies()
+        collisionDetection()
     }
     gameLoop()
 
