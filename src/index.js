@@ -3,7 +3,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
     const startBtn = document.getElementById("startButton")
     startBtn.addEventListener("click", gameStart)
-    fetchComments()
     
     let missiles = [];
     let enemies = [];
@@ -18,11 +17,7 @@ document.addEventListener("DOMContentLoaded", function(){
     
     
 
-    function fetchComments(){
-        fetch("http://localhost:3000/api/v1/comments")
-        .then(res => res.json())
-        .then(data => console.log(data))
-    }
+ 
 
 
     function getRandomArbitrary(min, max) {

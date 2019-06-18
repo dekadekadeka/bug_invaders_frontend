@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Bug Invaders</title>
-    <script src="src/index.js" charset="utf-8"></script>
+    
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
@@ -13,11 +13,29 @@
             <div id="enemy"></div>
             <div id="missiles"></div>
     </div>
-    <div id="createUser">User</div>
+    <div id="createUser">
+        <h1>Create User</h1>
+        <form id="userForm">
+            <input type="text" name="username" id="userNameInput" placeholder="Username">
+            <input type="text" name="email" id="emailInput" placeholder="Email">
+        </form>
+    </div>
+    <div id="highscoreDiv">
+        <h1 id="usersHighscore">Your High Score:</h1>
+    </div>
+    <div id="commentsDiv">
+        <h1>Comments</h1>
+        <ul id="commentUl">
+        </ul>
+    </div>
     <button id="startButton">Start</button>
 
 
-   
+
+    <script src="src/data.js" charset="utf-8"></script>
+    <script src="src/index.js" charset="utf-8"></script>
+    
     
   </body>
+  
 </html>
