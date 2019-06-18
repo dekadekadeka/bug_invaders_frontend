@@ -1,7 +1,7 @@
     document.addEventListener("DOMContentLoaded", function(){
         fetchComments()
-        userSubmitBtn = document.getElementById("userSubmit")
-        userSubmitBtn.addEventListener("submit", createUser)
+        createUserForm = document.getElementById("userForm")
+        createUserForm.addEventListener("submit", createUser)
     })
 
     function createUser(e){
@@ -17,7 +17,8 @@
                 "Content-Type": 'application/json'
             },
             body: JSON.stringify(newUser)
-          }).then(resp => console.log(resp))
+          }).then(e.target.reset())
+          .then(alert("New user created!"))
     }
 
     function fetchComments(){
