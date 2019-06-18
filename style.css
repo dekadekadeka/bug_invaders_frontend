@@ -45,7 +45,7 @@
     background-repeat: no-repeat;
 }
 
-#score {
+#currentScore {
     height: 110px;
     width: 120px;
     position: absolute;
