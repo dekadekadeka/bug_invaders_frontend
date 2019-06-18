@@ -14,11 +14,6 @@ document.addEventListener("DOMContentLoaded", function(){
         gameLoop()
     }
     
-    
-    
-
- 
-
 
     function getRandomArbitrary(min, max) {
         return Math.random() * (max - min) + min;
@@ -26,8 +21,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
     function increaseScore(){
-        const scoreDisplay = document.getElementById("score")
-        scoreDisplay.innerText = parseInt(scoreDisplay.innerText) + 10
+        const scoreDisplaySpan = document.getElementById("currentScoreSpan")
+        scoreDisplaySpan.innerText = parseInt(scoreDisplaySpan.innerText) + 10 
     }
     
         let hero = {

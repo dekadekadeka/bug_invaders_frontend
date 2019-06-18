@@ -6,17 +6,12 @@
     
 }
 
-.responsive{
-    width: 100%;
-    height: auto;
-}
-
 #hero {
     background-image: url("assets/cat_transparent.png");
     height: 130px;
     width: 110px;
     position: absolute;
-    top: 960px;
+    top: 1050px;
     left: 890px;
     background-repeat: no-repeat;
 }
@@ -45,19 +40,19 @@
     background-repeat: no-repeat;
 }
 
-#currentScore {
+#currentScoreDiv {
     height: 110px;
     width: 120px;
     position: absolute;
-    top: 300px;
+    top: 360px;
     left: 250px;
 }
 
 #startButton{
-    height: 110px;
-    width: 120px;
+    height: auto;
+    width: auto;
     position: absolute;
-    top: 1200px;
+    top: 1300px;
     left: 250px;
 }
 
@@ -65,7 +60,7 @@
     height: auto;
     width: 50%;
     position: absolute;
-    top: 200px;
+    top: 50px;
     left: 2000px;
 }
 
@@ -81,6 +76,6 @@
     height: auto;
     width: 50%;
     position: absolute;
-    top: 320px;
+    top: 380px;
     left: 2000px; 
 }
