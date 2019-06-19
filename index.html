@@ -7,9 +7,18 @@
     <link rel="stylesheet" type="text/css" href="style.css">
   </head>
   <body>
-      <h1>Bug Invaders</h1>
+<!-- Image and text -->
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+          <img src="assets/big bug.png" width="30" height="30" class="d-inline-block align-top" alt="">
+          Bug Invaders
+        </a>
+    </nav>
+      
     <div id="background">
         <div id="currentScoreDiv" class="container">Current Score: <span id="currentScoreSpan">0</span></div>
+        <div id="currentLivesDiv" class="container">Lives: <span id="currentLivesSpan">5</span></div>
+
             <div id="hero"></div>
             <div id="enemy"></div>
             <div id="missiles"></div>
@@ -38,7 +47,7 @@
         </form>
 
         <h3>Comments</h3>
-        <ul id="commentUl">
+        <ul id="commentUl" class="list-group">
         </ul>
 
         

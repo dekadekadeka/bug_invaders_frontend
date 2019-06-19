@@ -1,8 +1,8 @@
 #title {
     height: 130px;
-    width: 110px;
+    width: 200px;
     top: 50px;
-    left: 400px;
+    left: 600px;
 }
 #background {
     background-image: url("assets/transparent_tv.png");
@@ -19,7 +19,7 @@
     height: 130px;
     width: 110px;
     position: absolute;
-    top: 1050px;
+    top: 1100px;
     left: 890px;
     background-repeat: no-repeat;
 }
@@ -52,8 +52,16 @@
     height: 110px;
     width: 120px;
     position: absolute;
-    top: 360px;
+    top: 410px;
     left: 250px;
+}
+
+#currentLivesDiv {
+    height: 110px;
+    width: 120px;
+    position: absolute;
+    top: 420px;
+    left: 1500px;
 }
 
 #startButton{
@@ -61,7 +69,7 @@
     width: auto;
     position: absolute;
     top: 190px;
-    left: 800px;
+    left: 900px;
 }
 
 #createUser{
@@ -76,7 +84,7 @@
     height: auto;
     width: 50%;
     position: absolute;
-    top: 1500px;
+    top: 1400px;
     left: 300px; 
 }
 
@@ -85,5 +93,5 @@
     width: 50%;
     position: absolute;
     top: 1400px;
-    left: 1200px; 
+    left: 1400px; 
 }

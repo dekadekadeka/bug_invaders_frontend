@@ -1,6 +1,7 @@
 let user_id = 0
 let game_id = 0
 let badDiv = document.getElementById("background")
+let highscoresUl = document.getElementById("highscoreUl")
 
    document.addEventListener("DOMContentLoaded", function(){
         fetchComments()
@@ -74,6 +75,7 @@ let badDiv = document.getElementById("background")
     function populateComment(comment){
         const commentUl = document.getElementById("commentUl")
         const li = document.createElement("li")
+        li.className = "list-group-item"
         li.innerText = comment.content
         commentUl.append(li)
     }
@@ -101,12 +103,12 @@ let badDiv = document.getElementById("background")
     }
 
     function populateGames(games){
+        highscoresUl.innerHTML = ""
         games.forEach(game => {populateGame(game)
         })
     }
 
     function populateGame(game){
-        let highscoresUl = document.getElementById("highscoreUl")
         if (game.user_id === user_id) {
             const li = document.createElement("li")
             li.innerText = game.score

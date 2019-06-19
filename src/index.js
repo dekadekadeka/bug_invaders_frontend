@@ -1,4 +1,6 @@
 let score = 0
+let gameStatus = false
+let lives = 5
 document.addEventListener("DOMContentLoaded", function(){
     document.addEventListener("keydown", actions)
 
@@ -14,6 +16,9 @@ document.addEventListener("DOMContentLoaded", function(){
         if (user_id === 0){
             alert("Sign in to play!")
         }else{
+            lives = 5
+            gameStatus = true
+            startBtn.disabled = true
         createEnemies()
         gameLoop()
         }
@@ -31,6 +36,13 @@ document.addEventListener("DOMContentLoaded", function(){
         score = scoreDisplaySpan.innerText
         console.log(score)
     }
+
+    function decreaseLives(){
+        const currentLivesSpan = document.getElementById("currentLivesSpan")
+        currentLivesSpan.innerText = parseInt(currentLivesSpan.innerText) -1
+        lives = currentLivesSpan.innerText
+        console.log(lives)
+    }
     
         let hero = {
             top: 960,
@@ -44,31 +56,31 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     function actions(e){
-        if (e.keyCode === 37) {
-            e.preventDefault()
-            // console.log(hero.left)
-            if(hero.left >= 280) {
-            hero.left = hero.left - 30;
-            
-            moveHero()
+            if (e.keyCode === 37 && gameStatus === true) {
+                e.preventDefault()
+                // console.log(hero.left)
+                if(hero.left >= 280) {
+                hero.left = hero.left - 30;
+                
+                moveHero()
+                }
+            } else if (e.keyCode === 39 && gameStatus === true) {
+                e.preventDefault()
+                // console.log("RIGHT")
+                // console.log(hero.left)
+                if(hero.left <= 1540)
+                hero.left = hero.left + 30;
+                moveHero()
+            } else if (e.keyCode === 32 && gameStatus === true) {
+                // console.log("FIRE")
+                e.preventDefault()
+                missiles.push({
+                    left: hero.left + 15,
+                    top: hero.top + 10 
+                })
+                drawMissiles()
+                // console.log(missiles)
             }
-        } else if (e.keyCode === 39) {
-            e.preventDefault()
-            // console.log("RIGHT")
-            // console.log(hero.left)
-            if(hero.left <= 1540)
-            hero.left = hero.left + 30;
-            moveHero()
-        } else if (e.keyCode === 32) {
-            // console.log("FIRE")
-            e.preventDefault()
-            missiles.push({
-                left: hero.left + 15,
-                top: hero.top + 10 
-            })
-            drawMissiles()
-            // console.log(missiles)
-        }
     }
 
     function drawMissiles(){
@@ -103,6 +115,7 @@ document.addEventListener("DOMContentLoaded", function(){
             if (enemies[i].top < 950) {
             enemies[i].top = enemies[i].top + 10;
             } else {
+                decreaseLives()
                 enemies.splice(i, 1)
             }
         }
@@ -142,18 +155,21 @@ document.addEventListener("DOMContentLoaded", function(){
         moveEnemies()
         drawEnemies()
         collisionDetection()
-        } else if (enemies.length === 0 && missiles.length === 0){
+
+        } else if (lives <= 0){
             clearTimeout(timer)
             completeGame()
-        }
+        } else if (enemies.length === 0) {
+            createEnemies()
+        } 
     }
 
     function completeGame(){
         saveGame()
         fetchGames()
-        //  save game
-        //  increment lvl
-        //  start new game
+        lives = 5
+        gameStatus = false
+        startBtn.disabled = false
         console.log("FINISHED")
     }
     
