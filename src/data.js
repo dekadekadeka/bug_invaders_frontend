@@ -111,6 +111,7 @@ let highscoresUl = document.getElementById("highscoreUl")
     function populateGames(games){
         highscoresUl.innerHTML = ""
         games.forEach(game => {populateGame(game)
+            console.log(game)
         })
     }
 
