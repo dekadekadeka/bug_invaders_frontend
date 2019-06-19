@@ -1,31 +1,47 @@
+let score = 0
+let gameStatus = false
+let lives = 5
 document.addEventListener("DOMContentLoaded", function(){
-    fetchComments()
-    // gameStart()
     document.addEventListener("keydown", actions)
+
+    const startBtn = document.getElementById("startButton")
+    startBtn.addEventListener("click", gameStart)
+    
+    let missiles = [];
+    let enemies = [];
+    
     
 
-    function fetchComments(){
-        fetch("http://localhost:3000/api/v1/comments")
-        .then(res => res.json())
-        .then(data => populateComments(data))
+    function gameStart(){
+        if (user_id === 0){
+            alert("Sign in to play!")
+        }else{
+            lives = 5
+            gameStatus = true
+            startBtn.disabled = true
+        createEnemies()
+        gameLoop()
+        }
     }
+    
 
-    function populateComments(comments){
-        comments.forEach(comment => {populateComment(comment)
-        })
-    }
-
-    function populateComment(comment) {
-        const commentUl = document.getElementById("commentUl")
-        const li = document.createElement("li")
-        li.innerText = `${comment.content} by ${comment.user_id}`
-        commentUl.append(li)
-    }
+    function getRandomArbitrary(min, max) {
+        return Math.random() * (max - min) + min;
+      }
 
 
     function increaseScore(){
-        const scoreDisplay = document.getElementById("score")
-        scoreDisplay.innerText = parseInt(scoreDisplay.innerText) + 10
+        const scoreDisplaySpan = document.getElementById("currentScoreSpan")
+        scoreDisplaySpan.innerText = parseInt(scoreDisplaySpan.innerText) + 10 
+        score = scoreDisplaySpan.innerText
+        console.log(score)
+    }
+
+    function decreaseLives(){
+        const currentLivesSpan = document.getElementById("currentLivesSpan")
+        currentLivesSpan.innerText = parseInt(currentLivesSpan.innerText) -1
+        lives = currentLivesSpan.innerText
+        console.log(lives)
     }
     
         let hero = {
@@ -33,47 +49,38 @@ document.addEventListener("DOMContentLoaded", function(){
             left: 890
         };
 
-    let missiles = [];
-    let enemies = [
-        {top: 200, left: 950},
-        {top: 200, left: 800},
-        {top: 200, left: 1100},
-        {top: 200, left: 1250},
-        {top: 200, left: 1400},
-        {top: 200, left: 650},
-
-    ]
+   
 
     function moveHero() {
         document.getElementById("hero").style.left = hero.left + "px";
     }
 
     function actions(e){
-        if (e.keyCode === 37) {
-            e.preventDefault()
-            // console.log(hero.left)
-            if(hero.left >= 280) {
-            hero.left = hero.left - 10;
-            
-            moveHero()
+            if (e.keyCode === 37 && gameStatus === true) {
+                e.preventDefault()
+                // console.log(hero.left)
+                if(hero.left >= 280) {
+                hero.left = hero.left - 30;
+                
+                moveHero()
+                }
+            } else if (e.keyCode === 39 && gameStatus === true) {
+                e.preventDefault()
+                // console.log("RIGHT")
+                // console.log(hero.left)
+                if(hero.left <= 1540)
+                hero.left = hero.left + 30;
+                moveHero()
+            } else if (e.keyCode === 32 && gameStatus === true) {
+                // console.log("FIRE")
+                e.preventDefault()
+                missiles.push({
+                    left: hero.left + 15,
+                    top: hero.top + 10 
+                })
+                drawMissiles()
+                // console.log(missiles)
             }
-        } else if (e.keyCode === 39) {
-            e.preventDefault()
-            // console.log("RIGHT")
-            // console.log(hero.left)
-            if(hero.left <= 1540)
-            hero.left = hero.left + 10;
-            moveHero()
-        } else if (e.keyCode === 32) {
-            // console.log("FIRE")
-            e.preventDefault()
-            missiles.push({
-                left: hero.left + 15,
-                top: hero.top + 10 
-            })
-            drawMissiles()
-            // console.log(missiles)
-        }
     }
 
     function drawMissiles(){
@@ -96,16 +103,19 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     }
 
+   
     function createEnemies() {
-        enemies.push({top: 200, left: 400})
+        for(i=0; i < getRandomArbitrary(5, 10) ; i++){
+        enemies.push({top: 200, left: getRandomArbitrary(400, 1300)})
+        }
     }
 
     function moveEnemies(){
         for(i=0; i < enemies.length; i++) {
-            console.log(enemies[i].top)
             if (enemies[i].top < 950) {
             enemies[i].top = enemies[i].top + 10;
             } else {
+                decreaseLives()
                 enemies.splice(i, 1)
             }
         }
@@ -122,8 +132,6 @@ document.addEventListener("DOMContentLoaded", function(){
     function collisionDetection(){
         for(k=0; k < enemies.length; k++) {
             for(i=0; i < missiles.length; i++) {
-                console.log("missile top", missiles[i].top)
-                console.log("enemy top", enemies[k].top)
                 if (
                     (missiles[i].top <= enemies[k].top + 50) &&
                     (missiles[i].top > enemies[k].top) &&
@@ -139,21 +147,33 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     }
 
-    // function gameStart(){
-    //     setTimeout(createEnemies, 100)
-    //     gameLoop()
-    // }
-
     function gameLoop(){
-        setTimeout(gameLoop, 50)
-        
+        let timer = setTimeout(gameLoop, 90)
         moveMissiles()
         drawMissiles()
+        if (enemies.length >= 1) {
         moveEnemies()
         drawEnemies()
         collisionDetection()
+
+        } else if (lives <= 0){
+            clearTimeout(timer)
+            completeGame()
+        } else if (enemies.length === 0) {
+            createEnemies()
+        } 
     }
-    gameLoop()
+
+    function completeGame(){
+        saveGame()
+        fetchGames()
+        lives = 5
+        gameStatus = false
+        startBtn.disabled = false
+        console.log("FINISHED")
+    }
+    
+
     
 
 
@@ -162,14 +182,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
     
-
-
-
-
-
-
-
-
 
 
 })

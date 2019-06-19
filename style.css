@@ -1,16 +1,25 @@
+#title {
+    height: 130px;
+    width: 200px;
+    top: 50px;
+    left: 600px;
+}
 #background {
     background-image: url("assets/transparent_tv.png");
     height: 2200px;
     width: 1800px;
     background-repeat: no-repeat;
+    /* background-size: cover; */
+    
 }
+
 
 #hero {
     background-image: url("assets/cat_transparent.png");
     height: 130px;
     width: 110px;
     position: absolute;
-    top: 960px;
+    top: 1100px;
     left: 890px;
     background-repeat: no-repeat;
 }
@@ -39,11 +48,50 @@
     background-repeat: no-repeat;
 }
 
-#score {
+#currentScoreDiv {
     height: 110px;
     width: 120px;
     position: absolute;
-    top: 300px;
+    top: 410px;
     left: 250px;
 }
 
+#currentLivesDiv {
+    height: 110px;
+    width: 120px;
+    position: absolute;
+    top: 420px;
+    left: 1500px;
+}
+
+#startButton{
+    height: auto;
+    width: auto;
+    position: absolute;
+    top: 190px;
+    left: 900px;
+}
+
+#createUser{
+    height: auto;
+    width: 50%;
+    position: absolute;
+    top: 150px;
+    left: 250px; 
+}
+
+#commentsDiv{
+    height: auto;
+    width: 50%;
+    position: absolute;
+    top: 1400px;
+    left: 300px; 
+}
+
+#highScoreDiv {
+    height: auto;
+    width: 50%;
+    position: absolute;
+    top: 1400px;
+    left: 1400px; 
+}
