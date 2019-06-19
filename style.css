@@ -9,8 +9,6 @@
     height: 2200px;
     width: 1800px;
     background-repeat: no-repeat;
-    /* background-size: cover; */
-    
 }
 
 
@@ -82,7 +80,7 @@
 
 #commentsDiv{
     height: auto;
-    width: 50%;
+    width: 40%;
     position: absolute;
     top: 1400px;
     left: 300px; 
@@ -93,5 +91,5 @@
     width: 50%;
     position: absolute;
     top: 1400px;
-    left: 1400px; 
+    left: 1500px; 
 }
