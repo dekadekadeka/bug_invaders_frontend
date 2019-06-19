@@ -31,7 +31,8 @@ let badDiv = document.getElementById("background")
           .then(res => {
               console.log("This is my game", res)
               game_id = res.id
-          })
+          }).then(fetchGames())
+
 
     }
 
@@ -50,12 +51,11 @@ let badDiv = document.getElementById("background")
             },
             body: JSON.stringify(newUser)
           }).then (res => res.json())
-          .then(res => {
+            .then(res => {
               console.log("This is my user", res)
               user_id = res.id
               console.log("This is my user id", user_id)
           }).then(e.target.reset())
-          .then(fetchGames())
           .then(alert("New user created!"))
     }
 
@@ -107,10 +107,10 @@ let badDiv = document.getElementById("background")
 
     function populateGame(game){
         let highscoresUl = document.getElementById("highscoreUl")
-        const li = document.createElement("li")
         if (game.user_id === user_id) {
-        li.innerText = game.score
-        highscoresUl.append(li)
+            const li = document.createElement("li")
+            li.innerText = game.score
+            highscoresUl.append(li)
     }
 }
 
