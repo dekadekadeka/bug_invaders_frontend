@@ -60,7 +60,8 @@
     line-height: 1.5;
     color: #212529;
     text-align: left;
-    background-image: url("assets/scratchblue.jpg")
+    background-image: url("assets/scratchblue.jpg");
+    background-attachment: fixed;
     
   }
   
@@ -10131,11 +10132,11 @@
     font-size: 2.20em;
 }
 #userSubmit{
-    position: absolute;
-    top: 50px;
+    top: 48px;
     left: 875px;
     color: white; 
     font-size: .795em;
+    position: inline;
 
 }
 
@@ -10150,10 +10151,12 @@
 }
 
 #highScoreDiv {
-    font-size: 4.17em;
+    font-size: 50px;
     height: auto;
-    width: 50%;
+    width: 500px;
     position: absolute;
-    top: 1400px;
-    left: 1500px; 
+    top: 300px;
+    left: 1800px; 
+    display: inline;
+    background-color: #17a2b8;
 }
