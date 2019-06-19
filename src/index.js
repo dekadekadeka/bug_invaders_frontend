@@ -178,8 +178,6 @@ document.addEventListener("DOMContentLoaded", function(){
             
         } else if (enemies.length === 0) {
             createEnemies()
-            //timer increase speed
-            // timer = setTimeout(gameLoop, time - 10)
         } 
     }
 
