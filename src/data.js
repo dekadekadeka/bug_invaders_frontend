@@ -82,8 +82,12 @@ let highscoresUl = document.getElementById("highscoreUl")
 
     function createComment(e){
         e.preventDefault()
+        if (user_id === 0 && game_id === 0) {
+            alert("You must create a user and play a game to leave a comment!")
+        } else {
         const commentInput = document.getElementById("commentContentInput")
         let newComment = {"content": commentInput.value, "user_id": user_id, "game_id": game_id}
+        
         fetch("http://localhost:3000/api/v1/comments", {
             method: "POST",
             headers: {
@@ -94,6 +98,7 @@ let highscoresUl = document.getElementById("highscoreUl")
           }).then(e.target.reset())
           .then(alert("New comment created!"))
           .then(populateComment(newComment))
+        }
     }
 
     function fetchGames(){

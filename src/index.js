@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function(){
         if (user_id === 0){
             alert("Sign in to play!")
         }else{
-            lives = 5
+            missiles = []
             gameStatus = true
             startBtn.disabled = true
         createEnemies()
@@ -37,9 +37,23 @@ document.addEventListener("DOMContentLoaded", function(){
         console.log(score)
     }
 
+    function resetScore(){
+        const scoreDisplaySpan = document.getElementById("currentScoreSpan")
+        scoreDisplaySpan.innerText = 0 
+        score = scoreDisplaySpan.innerText
+        console.log(score)
+    }
+
     function decreaseLives(){
         const currentLivesSpan = document.getElementById("currentLivesSpan")
         currentLivesSpan.innerText = parseInt(currentLivesSpan.innerText) -1
+        lives = currentLivesSpan.innerText
+        console.log(lives)
+    }
+
+    function resetLives(){
+        const currentLivesSpan = document.getElementById("currentLivesSpan")
+        currentLivesSpan.innerText = 5
         lives = currentLivesSpan.innerText
         console.log(lives)
     }
@@ -105,7 +119,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
    
     function createEnemies() {
-        for(i=0; i < getRandomArbitrary(5, 10) ; i++){
+        for(i=0; i < getRandomArbitrary(1, 10) ; i++){
         enemies.push({top: 200, left: getRandomArbitrary(400, 1300)})
         }
     }
@@ -148,7 +162,8 @@ document.addEventListener("DOMContentLoaded", function(){
     }
 
     function gameLoop(){
-        let timer = setTimeout(gameLoop, 90)
+        // let time = 100
+        let timer = setTimeout(gameLoop, 50)
         moveMissiles()
         drawMissiles()
         if (enemies.length >= 1) {
@@ -159,15 +174,21 @@ document.addEventListener("DOMContentLoaded", function(){
         } else if (lives <= 0){
             clearTimeout(timer)
             completeGame()
+            
+            
         } else if (enemies.length === 0) {
             createEnemies()
+            //timer increase speed
+            // timer = setTimeout(gameLoop, time - 10)
         } 
     }
 
     function completeGame(){
+        alert("Oh snap GAME OVER!")
         saveGame()
         fetchGames()
-        lives = 5
+        resetLives()
+        resetScore()
         gameStatus = false
         startBtn.disabled = false
         console.log("FINISHED")
