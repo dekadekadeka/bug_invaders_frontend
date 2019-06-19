@@ -1,7 +1,8 @@
 let user_id = 0
 let game_id = 0
 let badDiv = document.getElementById("background")
-let highscoresUl = document.getElementById("highscoreUl")
+const highscoresUl = document.getElementById("highscoreUl")
+const allTimeHighScoresUl = document.getElementById("allTimeHighScoresUl")
 
    document.addEventListener("DOMContentLoaded", function(){
         fetchComments()
@@ -132,6 +133,7 @@ let highscoresUl = document.getElementById("highscoreUl")
     }
 
     function allTimeScoresIteration(games) {
+        allTimeHighScoresUl.innerHTML = ""
         let allScores = []
         games.forEach(function (game){
             allScores.push(game.score)
@@ -141,7 +143,6 @@ let highscoresUl = document.getElementById("highscoreUl")
             bestScores = bestScores.slice(0, 15)
     
             bestScores.forEach(function(score){
-                const allTimeHighScoresUl = document.getElementById("allTimeHighScoresUl")
                 const li = document.createElement("li")
                 li.innerText = score
                 allTimeHighScoresUl.append(li)
