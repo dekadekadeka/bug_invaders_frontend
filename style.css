@@ -10160,3 +10160,12 @@
     display: inline;
     background-color: #17a2b8;
 }
+
+#allTimeHighScores {
+    font-size: 3.0em;
+    height: auto;
+    width: 50%;
+    position: absolute;
+    top: 1000px;
+    left: 1800px; 
+}
