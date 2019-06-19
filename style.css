@@ -60,9 +60,8 @@
     line-height: 1.5;
     color: #212529;
     text-align: left;
-    background: url("https://ext-marketing.com/wp-content/uploads/2017/11/AdobeStock_85142566.jpg");
-    background-color: #0c1d3b;
-    background-attachment: fixed;
+    background-image: url("assets/scratchblue.jpg")
+    
   }
   
   [tabindex="-1"]:focus {
@@ -4176,9 +4175,9 @@
   .navbar-brand {
     display: inline-block;
     padding-top: 0.3125rem;
-    padding-bottom: 0.3125rem;
+    padding-bottom: 0.2125rem;
     margin-right: 1rem;
-    font-size: 1.25rem;
+    font-size: 1.75rem;
     line-height: inherit;
     white-space: nowrap;
   }
@@ -4573,6 +4572,7 @@
   }
   
   .card > .list-group:first-child .list-group-item:first-child {
+    
     border-top-left-radius: 0.25rem;
     border-top-right-radius: 0.25rem;
   }
@@ -5355,7 +5355,7 @@
     display: block;
     padding: 0.75rem 1.25rem;
     margin-bottom: -1px;
-    background-color: #fff;
+    background-color: rgb(23, 162, 184);
     border: 1px solid rgba(0, 0, 0, 0.125);
   }
   
@@ -6572,7 +6572,7 @@
   }
   
   .bg-light {
-    background-color: #6ab3c7 !important;
+    background-color: rgb(23, 162, 184) !important;
   }
   
   a.bg-light:hover, a.bg-light:focus,
@@ -10093,28 +10093,32 @@
     height: 110px;
     width: 120px;
     position: absolute;
-    top: 410px;
+    top: 370px;
     left: 250px;
     font-family: 'Audiowide', cursive;
-    font-size: 20px;
+    font-size: 2.17em;
+    
 }
 
 #currentLivesDiv {
+    
     height: 110px;
     width: 120px;
     position: absolute;
-    top: 420px;
-    left: 1500px;
+    top: 370px;
+    left: 1525px;
     font-family: 'Audiowide', cursive;
-    font-size: 20px;
+    font-size: 2.17em;
+    color: green;
 }
 
 #startButton{
     height: auto;
     width: auto;
     position: absolute;
-    top: 190px;
-    left: 900px;
+    top: 200px;
+    left: 1300px;
+    font-size: 1.69em;
 }
 
 #createUser{
@@ -10122,21 +10126,34 @@
     width: 50%;
     position: absolute;
     top: 150px;
-    left: 250px; 
+    left: 250px;
+    color: black; 
+    font-size: 2.20em;
+}
+#userSubmit{
+    position: absolute;
+    top: 50px;
+    left: 875px;
+    color: white; 
+    font-size: .795em;
+
 }
 
 #commentsDiv{
+    font-size: 2.20em;
     height: auto;
     width: 40%;
     position: absolute;
     top: 1400px;
     left: 300px; 
+    color: black;
 }
 
 #highScoreDiv {
+    font-size: 4.17em;
     height: auto;
     width: 50%;
     position: absolute;
     top: 1400px;
-left: 1500px; 
+    left: 1500px; 
 }
