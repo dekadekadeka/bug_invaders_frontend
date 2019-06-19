@@ -5,6 +5,7 @@ let highscoresUl = document.getElementById("highscoreUl")
 
    document.addEventListener("DOMContentLoaded", function(){
         fetchComments()
+        allTimeScores()
         
         createUserForm = document.getElementById("userForm")
         createUserForm.addEventListener("submit", createUser)
@@ -77,7 +78,6 @@ let highscoresUl = document.getElementById("highscoreUl")
         const li = document.createElement("li")
         li.className = "list-group-item"
         li.innerText = comment.content + " by " + comment.user["username"]
-        console.log(comment)
         commentUl.append(li)
     }
 
@@ -106,6 +106,7 @@ let highscoresUl = document.getElementById("highscoreUl")
         fetch("http://localhost:3000/api/v1/games")
         .then(res => res.json())
         .then(data => {populateGames(data)})
+        
     }
 
     function populateGames(games){
@@ -122,4 +123,27 @@ let highscoresUl = document.getElementById("highscoreUl")
     }
 }
 
+    function allTimeScores() {
+        fetch("http://localhost:3000/api/v1/games")
+        .then(res => res.json())
+        .then(data => {allTimeScoresIteration(data)
+        })
+    }
+
+    function allTimeScoresIteration(games) {
+        let allScores = []
+        games.forEach(function (game){
+            allScores.push(game.score)
+        })
+            let bestScores = allScores.sort(function(a, b){return b-a});
+
+            bestScores = bestScores.slice(0, 15)
+    
+            bestScores.forEach(function(score){
+                const allTimeHighScoresUl = document.getElementById("allTimeHighScoresUl")
+                const li = document.createElement("li")
+                li.innerText = score
+                allTimeHighScoresUl.append(li)
+        })
+    }
 

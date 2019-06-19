@@ -10157,3 +10157,12 @@
     top: 1400px;
     left: 1500px; 
 }
+
+#allTimeHighScores {
+    font-size: 3.0em;
+    height: auto;
+    width: 50%;
+    position: absolute;
+    top: 1000px;
+    left: 1800px; 
+}
