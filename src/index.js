@@ -187,6 +187,7 @@ document.addEventListener("DOMContentLoaded", function(){
         alert("Oh snap GAME OVER!")
         saveGame()
         fetchGames()
+        allTimeScores()
         resetLives()
         resetScore()
         gameStatus = false
