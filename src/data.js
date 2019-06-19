@@ -76,7 +76,8 @@ let highscoresUl = document.getElementById("highscoreUl")
         const commentUl = document.getElementById("commentUl")
         const li = document.createElement("li")
         li.className = "list-group-item"
-        li.innerText = comment.content
+        li.innerText = comment.content + " by " + comment.user["username"]
+        console.log(comment)
         commentUl.append(li)
     }
 
