@@ -38,6 +38,12 @@ document.addEventListener("DOMContentLoaded", function(){
         score = scoreDisplaySpan.innerText
         if(score == 250){
             blast()
+        } else if (score == 500){
+            blast()
+        } else if (score == 1000){
+            blast()
+        } else if (score == 2000){
+            blast()
         }
         console.log(score)
     }
