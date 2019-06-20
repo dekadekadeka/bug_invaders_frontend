@@ -137,16 +137,17 @@ const allTimeHighScoresUl = document.getElementById("allTimeHighScoresUl")
         allTimeHighScoresUl.innerHTML = ""
         let allScores = []
         games.forEach(function (game){
-            allScores.push(game.score)
+            let hash = ({score: game.score, name: game.user.username})
+            allScores.push(hash)
         })
-            let bestScores = allScores.sort(function(a, b){return b-a});
+        let bestScores = allScores.sort(function (a,b){
+            return b.score - a.score;
+        })
 
-            bestScores = bestScores.slice(0, 15)
-    
-            bestScores.forEach(function(score){
-                const li = document.createElement("li")
-                li.innerText = score
-                allTimeHighScoresUl.append(li)
-        })
+        for(let i=0; i < 10; i++){
+            const li = document.createElement("li")
+            li.innerText = bestScores[i].score + " - " + bestScores[i].name.split(" ")[0]
+            allTimeHighScoresUl.append(li)
+        }
     }
 
