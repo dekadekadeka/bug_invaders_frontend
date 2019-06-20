@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function(){
     const changeAvatarButton = document.getElementById("avatar")
     changeAvatarButton.addEventListener("click", function(){
         let num = Math.round(getRandomArbitrary(1,2))
-        let hero = document.getElementById('hero')
+        let hero = document.getElementById("hero")
         console.log(num)
         if (num === 1) {
             hero.style.backgroundImage = "url(assets/cat_transparent.png)"
