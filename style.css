@@ -10126,13 +10126,7 @@
         
 }
 
-    #userSubmit{
-        font-size: 1.69em;
-        padding: 15px;
-        border-radius: 25px;
-        top: 190px;
-        left: 1330px;
-    }
+   
 
     #createAUserTitle {
         font-size: 1em;
@@ -10178,13 +10172,15 @@
     }
 
     #userSubmit{
-        top: 48px;
-        left: 875px;
+        top: 190px;
+        left: 1330px;
         color: white; 
         font-size: .795em;
         position: inline;
-
+        padding: 15px;
+        border-radius: 25px;
     }
+
     /* work on */
     #commentsDiv{
         font-size: 2.20em;
@@ -10277,4 +10273,10 @@
         border-width: 5px;
         border-color: black;
 
+    }
+
+
+    #avatar{
+        top: 1400px;
+        left: 2300px; 
     }
