@@ -78,7 +78,7 @@ const allTimeHighScoresUl = document.getElementById("allTimeHighScoresUl")
         const commentUl = document.getElementById("commentUl")
         const li = document.createElement("li")
         li.className = "list-group-item"
-        li.innerText = comment.user["username"] + ":" + comment.content
+        li.innerText = comment.user.username + ":" + comment.content
         commentUl.append(li)
     }
 
@@ -97,8 +97,7 @@ const allTimeHighScoresUl = document.getElementById("allTimeHighScoresUl")
                 "Content-Type": 'application/json'
             },
             body: JSON.stringify(newComment)
-          }).then(populateComment)
-          .then(e.target.reset())
+          }).then(e.target.reset())
           .then(alert("New comment created!"))
           
         }
@@ -136,7 +135,9 @@ const allTimeHighScoresUl = document.getElementById("allTimeHighScoresUl")
     function allTimeScoresIteration(games) {
         allTimeHighScoresUl.innerHTML = ""
         let allScores = []
+
         games.forEach(function (game){
+            // console.log(game)
             let hash = ({score: game.score, name: game.user.username})
             allScores.push(hash)
         })
