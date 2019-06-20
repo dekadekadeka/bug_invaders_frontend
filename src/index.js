@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function(){
         const scoreDisplaySpan = document.getElementById("currentScoreSpan")
         scoreDisplaySpan.innerText = parseInt(scoreDisplaySpan.innerText) + 10 
         score = scoreDisplaySpan.innerText
-        if(score == 50){
+        if(score == 250){
             blast()
         }
         console.log(score)
@@ -226,13 +226,21 @@ document.addEventListener("DOMContentLoaded", function(){
 
     const changeAvatarButton = document.getElementById("avatar")
     changeAvatarButton.addEventListener("click", function(){
-        let num = Math.round(getRandomArbitrary(1,2))
+        let num = Math.round(getRandomArbitrary(1,6))
         let hero = document.getElementById("hero")
         console.log(num)
         if (num === 1) {
             hero.style.backgroundImage = "url(assets/cat_transparent.png)"
         } else if (num === 2) {
             hero.style.backgroundImage = "url(assets/ninja_coder.png)"
+        }else if (num === 3) {
+            hero.style.backgroundImage = "url(assets/batman_avatar.png)"
+        }else if (num === 4) {
+            hero.style.backgroundImage = "url(assets/pikachu-clipart-png-icon-14.png)"
+        }else if (num === 5) {
+            hero.style.backgroundImage = "url(assets/pusheencat.png)"
+        }else if (num === 6) {
+            hero.style.backgroundImage = "url(assets/dab_dino.png)"
         }
         console.log(hero)
     }) 
