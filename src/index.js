@@ -34,6 +34,9 @@ document.addEventListener("DOMContentLoaded", function(){
         const scoreDisplaySpan = document.getElementById("currentScoreSpan")
         scoreDisplaySpan.innerText = parseInt(scoreDisplaySpan.innerText) + 10 
         score = scoreDisplaySpan.innerText
+        if(score == 50){
+            blast()
+        }
         console.log(score)
     }
 
@@ -192,8 +195,29 @@ document.addEventListener("DOMContentLoaded", function(){
         startBtn.disabled = false
         console.log("FINISHED")
     }
-    
 
+    
+    ////confetti/////
+    function blast(){
+    var end = Date.now() + (10 * 1000);
+
+    var interval = setInterval(function() {
+    if (Date.now() > end) {
+        return clearInterval(interval);
+    }
+
+    confetti({
+        startVelocity: 30,
+        spread: 360,
+        ticks: 60,
+        origin: {
+            x: Math.random(),
+            // since they fall down, start a bit higher than random
+            y: Math.random() - 0.2
+        }
+    });
+}, 200);
+    }
     
 
 
