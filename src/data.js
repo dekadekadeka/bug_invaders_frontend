@@ -78,7 +78,7 @@ const allTimeHighScoresUl = document.getElementById("allTimeHighScoresUl")
         const commentUl = document.getElementById("commentUl")
         const li = document.createElement("li")
         li.className = "list-group-item"
-        li.innerText = comment.content + " by " + comment.user["username"]
+        li.innerText = comment.user["username"] + ":" + comment.content
         commentUl.append(li)
     }
 
@@ -97,9 +97,10 @@ const allTimeHighScoresUl = document.getElementById("allTimeHighScoresUl")
                 "Content-Type": 'application/json'
             },
             body: JSON.stringify(newComment)
-          }).then(e.target.reset())
+          }).then(populateComment)
+          .then(e.target.reset())
           .then(alert("New comment created!"))
-          .then(populateComment(newComment))
+          
         }
     }
 
