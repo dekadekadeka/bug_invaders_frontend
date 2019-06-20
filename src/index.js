@@ -3,10 +3,12 @@ let gameStatus = false
 let lives = 5
 document.addEventListener("DOMContentLoaded", function(){
     document.addEventListener("keydown", actions)
-
     const startBtn = document.getElementById("startButton")
     startBtn.addEventListener("click", gameStart)
+
+
     
+
     let missiles = [];
     let enemies = [];
     
@@ -206,6 +208,7 @@ document.addEventListener("DOMContentLoaded", function(){
         return clearInterval(interval);
     }
 
+
     confetti({
         startVelocity: 30,
         spread: 360,
@@ -219,6 +222,20 @@ document.addEventListener("DOMContentLoaded", function(){
 }, 200);
     }
     
+
+
+    const changeAvatarButton = document.getElementById("avatar")
+    changeAvatarButton.addEventListener("click", function(){
+        let num = Math.round(getRandomArbitrary(1,2))
+        let hero = document.getElementById("hero")
+        console.log(num)
+        if (num === 1) {
+            hero.style.backgroundImage = "url(assets/cat_transparent.png)"
+        } else if (num === 2) {
+            hero.style.backgroundImage = "url(assets/ninja_coder.png)"
+        }
+        console.log(hero)
+    }) 
 
 
     
