@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function(){
    
     function createEnemies() {
         for(i=0; i < getRandomArbitrary(1, 10) ; i++){
-        enemies.push({top: 200, left: getRandomArbitrary(400, 1300)})
+        enemies.push({top: 200, left: Math.round((getRandomArbitrary(400, 1300)))})
         }
     }
 
